@@ -1,0 +1,30 @@
+# Copyright 2016 The Fuchsia Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+config("snappy_config") {
+  include_dirs = [ "." ]
+}
+
+source_set("snappy") {
+  sources = [
+    "snappy-internal.h",
+    "snappy-sinksource.cc",
+    "snappy-sinksource.h",
+    "snappy-stubs-internal.cc",
+    "snappy-stubs-internal.h",
+    "snappy.cc",
+    "snappy.h",
+  ]
+
+  public_configs = [ ":snappy_config" ]
+
+  configs -= [ "//build/config:default_warnings" ]
+
+  cflags = [
+    "-Wall",
+    "-Wextra",
+    "-Wno-sign-compare",
+    "-Wno-unused-parameter",
+  ]
+}
